@@ -75,46 +75,103 @@
     "use strict";
 
     $(document).ready(function() {
-      var random = Math.floor((Math.random()*4)+1);
-      switch (random) {
-        case 1:
-          //dim red;
-          $('#redbox').animate({
+      var round = 1;
+      var clickedArray = [];
+      function selectColor() {
+        var random = Math.floor((Math.random()*4)+1);
+        switch (random) {
+          case 1:
+            //dim red;
+            $('#redbox').animate({
+                opacity: '0.5'
+            }, 1000).animate({
+                opacity: '1'
+            }, 1000);
+            break;
+          case 2:
+            //dim blue;
+            $('#bluebox').animate({
               opacity: '0.5'
-          }, 1000).animate({
-              opacity: '1'
-          }, 1000);
-          break;
-        case 2:
-          //dim blue;
-          $('#bluebox').animate({
-            opacity: '0.5'
-          },1000).animate({
-              opacity: '1'
-          }, 1000);
-          break;
-        case 3:
-          //dim green;
-          $('#greenbox').animate({
-            opacity: '0.5'
-          },1000).animate({
-              opacity: '1'
-          }, 1000);
-          break;
-        case 4:
-          //dim yellow;
-          $('#yellowbox').animate({
-            opacity: '0.5'
-          },1000).animate({
-              opacity: '1'
-          }, 1000);
-          break;
-        default:
-          alert("There was an error");
+            },1000).animate({
+                opacity: '1'
+            }, 1000);
+            break;
+          case 3:
+            //dim green;
+            $('#greenbox').animate({
+              opacity: '0.5'
+            },1000).animate({
+                opacity: '1'
+            }, 1000);
+            break;
+          case 4:
+            //dim yellow;
+            $('#yellowbox').animate({
+              opacity: '0.5'
+            },1000).animate({
+                opacity: '1'
+            }, 1000);
+            break;
+          default:
+            alert("There was an error");
+        }
+        return random;
       }
+      function run() {
+        var i=1;
+        var colorArray =[];
+        do {
+          colorArray.push(selectColor());
+          console.log(colorArray);
+        } while (i<round);
+      }
+
+      run();
+
       $('#redbox').click(function(event) {
         //redboxClicked
+        $(this).animate({
+          opacity: '0.5'
+        },1000).animate({
+          opacity: '1'
+        },1000);
+        clickedArray.push(1);
+        console.log(clickedArray);
       });
+
+      $('#bluebox').click(function(event) {
+        //redboxClicked
+        $(this).animate({
+          opacity: '0.5'
+        },1000).animate({
+          opacity: '1'
+        },1000);
+        clickedArray.push(1);
+        console.log(clickedArray);
+      });
+
+      $('#greenbox').click(function(event) {
+        //redboxClicked
+        $(this).animate({
+          opacity: '0.5'
+        },1000).animate({
+          opacity: '1'
+        },1000);
+        clickedArray.push(1);
+        console.log(clickedArray);
+      });
+
+      $('#yellowbox').click(function(event) {
+        //redboxClicked
+        $(this).animate({
+          opacity: '0.5'
+        },1000).animate({
+          opacity: '1'
+        },1000);
+        clickedArray.push(1);
+        console.log(clickedArray);
+      });
+
     });
 
     </script>
