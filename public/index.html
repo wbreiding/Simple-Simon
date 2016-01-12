@@ -60,6 +60,7 @@
   </head>
 
   <body>
+    <script src="/js/jquery.js"></script>
     <h1 id="header">Simple Simon</h1>
 
     <div id=container>
@@ -69,6 +70,54 @@
 
     <div id="instructions"></div>
     <div id="round"></div>
+
+    <script>
+    "use strict";
+
+    $(document).ready(function() {
+      var random = Math.floor((Math.random()*4)+1);
+      switch (random) {
+        case 1:
+          //dim red;
+          $('#redbox').animate({
+              opacity: '0.5'
+          }, 1000).animate({
+              opacity: '1'
+          }, 1000);
+          break;
+        case 2:
+          //dim blue;
+          $('#bluebox').animate({
+            opacity: '0.5'
+          },1000).animate({
+              opacity: '1'
+          }, 1000);
+          break;
+        case 3:
+          //dim green;
+          $('#greenbox').animate({
+            opacity: '0.5'
+          },1000).animate({
+              opacity: '1'
+          }, 1000);
+          break;
+        case 4:
+          //dim yellow;
+          $('#yellowbox').animate({
+            opacity: '0.5'
+          },1000).animate({
+              opacity: '1'
+          }, 1000);
+          break;
+        default:
+          alert("There was an error");
+      }
+      $('#redbox').click(function(event) {
+        //redboxClicked
+      });
+    });
+
+    </script>
 
   </body>
 </html>
