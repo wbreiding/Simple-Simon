@@ -80,12 +80,17 @@
       var colorArray =[];
       function selectColor() {
         var random = Math.floor((Math.random()*4)+1);
-        switch (random) {
+        console.log("New random color selected: " + random);
+        return random;
+      }
+
+      function animateColors(color) {
+        switch (color) {
           case 1:
             //dim red;
             $('#redbox').animate({
                 opacity: '0.5'
-            }, 1000).animate({
+            }, 500).animate({
                 opacity: '1'
             }, 1000);
             break;
@@ -93,7 +98,7 @@
             //dim blue;
             $('#bluebox').animate({
               opacity: '0.5'
-            },1000).animate({
+            },500).animate({
                 opacity: '1'
             }, 1000);
             break;
@@ -101,7 +106,7 @@
             //dim green;
             $('#greenbox').animate({
               opacity: '0.5'
-            },1000).animate({
+            },500).animate({
                 opacity: '1'
             }, 1000);
             break;
@@ -109,35 +114,49 @@
             //dim yellow;
             $('#yellowbox').animate({
               opacity: '0.5'
-            },1000).animate({
+            },500).animate({
                 opacity: '1'
             }, 1000);
             break;
           default:
             alert("There was an error");
         }
-        return random;
       }
 
       function checkCorrect() {
-        console.log(colorArray);
-        console.log(clickedArray);
-        if (colorArray == clickedArray) {
+        console.log("The clicked Array is " + clickedArray);
+        if (colorArray.toString() == clickedArray.toString()) {
           round++;
-          run();
+          clickedArray = []
+          console.log("Correct. Now to round " + round);
+          setTimeout(function() {
+            run();
+          }, 1500);
+        }
+        if (colorArray.length < clickedArray.length) {
+          alert("oops!  You lose!");
         }
       }
 
       function run() {
+        console.log("Entering run ... round " + round);
         var i=1;
-        do {
-          $('#instructions').html("Watch the Sequence");
-          $('#round').html("Round: " + round);
-          colorArray.push(selectColor());
-        } while (i<round) {
-          $('#instructions').html("Repeat the sequence you just saw.");
-        };
-      }
+
+        $('#instructions').html("Watch the Sequence");
+        $('#round').html("Round: " + round);
+
+        colorArray.push(selectColor());
+        colorArray.forEach(function(element,index,array) {
+            console.log("animating " + element);
+
+              setTimeout(function () {
+                  animateColors(element);
+              }, index*1500);
+        });
+        console.log("The new color array is " + colorArray);
+
+        $('#instructions').html("Repeat the sequence you just saw.");
+      };
 
       run();
 
@@ -145,7 +164,7 @@
         //redboxClicked
         $(this).animate({
           opacity: '0.5'
-        },1000).animate({
+        },500).animate({
           opacity: '1'
         },1000);
         clickedArray.push(1);
@@ -156,7 +175,7 @@
         //redboxClicked
         $(this).animate({
           opacity: '0.5'
-        },1000).animate({
+        },500).animate({
           opacity: '1'
         },1000);
         clickedArray.push(2);
@@ -167,7 +186,7 @@
         //redboxClicked
         $(this).animate({
           opacity: '0.5'
-        },1000).animate({
+        },500).animate({
           opacity: '1'
         },1000);
         clickedArray.push(3);
@@ -178,7 +197,7 @@
         //redboxClicked
         $(this).animate({
           opacity: '0.5'
-        },1000).animate({
+        },500).animate({
           opacity: '1'
         },1000);
         clickedArray.push(4);
